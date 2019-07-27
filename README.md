@@ -1,26 +1,26 @@
 # Overview
 
 
-![Documentation Status](image:: https://readthedocs.org/projects/leopy/badge/?style=flat)
+![Documentation Status](https://readthedocs.org/projects/leopy/badge/?style=flat)
 ![docs](https://readthedocs.org/projects/leopy)
 
 ### Travis-CI Build Status
-[![travis](image:: https://travis-ci.org/SmithSamuelM/leopy.svg?branch=master)](https://travis-ci.org/SmithSamuelM/leopy)
+[![travis](https://travis-ci.org/SmithSamuelM/leopy.svg?branch=master)](https://travis-ci.org/SmithSamuelM/leopy)
 
 ### PyPI Package latest release
-[![version](image:: https://img.shields.io/pypi/v/leopy.svg)](https://pypi.org/project/leopy)
+[![version](https://img.shields.io/pypi/v/leopy.svg)](https://pypi.org/project/leopy)
 
 ### Commits since latest release
-[![commits-since](image:: https://img.shields.io/github/commits-since/SmithSamuelM/leopy/v0.1.0.svg)](https://github.com/SmithSamuelM/leopy/compare/v0.1.0...master)
+[![commits-since](https://img.shields.io/github/commits-since/SmithSamuelM/leopy/v0.1.0.svg)](https://github.com/SmithSamuelM/leopy/compare/v0.1.0...master)
 
 ### PyPI Wheel
-[![wheel](image:: https://img.shields.io/pypi/wheel/leopy.svg)](https://pypi.org/project/leopy)
+[![wheel](https://img.shields.io/pypi/wheel/leopy.svg)](https://pypi.org/project/leopy)
 
 ### Supported versions
-[![supported-versions](image:: https://img.shields.io/pypi/pyversions/leopy.svg)](https://pypi.org/project/leopy)
+[![supported-versions](https://img.shields.io/pypi/pyversions/leopy.svg)](https://pypi.org/project/leopy)
 
 ### Supported implementations
-[![supported-implementations](image:: https://img.shields.io/pypi/implementation/leopy.svg)](https://pypi.org/project/leopy)
+[![supported-implementations](https://img.shields.io/pypi/implementation/leopy.svg)](https://pypi.org/project/leopy)
 
 
 
