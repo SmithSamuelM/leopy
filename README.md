@@ -1,3 +1,4 @@
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
 
 [![Documentation Status](https://readthedocs.org/projects/leopy/badge/?style=flat)](https://readthedocs.org/projects/leopy)  
 
