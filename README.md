@@ -1,6 +1,6 @@
 # Overview
 
-## Documentation Status
+### Documentation Status
 [![docs](https://readthedocs.org/projects/leopy/badge/?style=flat)](https://readthedocs.org/projects/leopy)
 
 ### Travis-CI Build Status
