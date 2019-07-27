@@ -27,9 +27,9 @@ Overview
     :alt: PyPI Package latest release
     :target: https://pypi.org/project/leopy
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/SmithSamuelM/leopy/v0.1.0.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/SmithSamuelM/leopy/vv0.1.0..svg
     :alt: Commits since latest release
-    :target: https://github.com/SmithSamuelM/leopy/compare/v0.1.0...master
+    :target: https://github.com/SmithSamuelM/leopy/compare/vv0.1.0....master
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/leopy.svg
     :alt: PyPI Wheel
