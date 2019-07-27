@@ -3,7 +3,7 @@
 
 [![PyPI Package latest release](https://img.shields.io/pypi/v/leopy.svg)](https://pypi.org/project/leopy)
 
-[![Commits since latest release](https://img.shields.io/github/commits-since/SmithSamuelM/leopy/v0.1.0.svg)](https://github.com/SmithSamuelM/leopy/compare/v0.1.0...master)
+[![Commits since latest release](https://img.shields.io/github/commits-since/SmithSamuelM/leopy/v0.1.1.svg)](https://github.com/SmithSamuelM/leopy/compare/v0.1.1...master)
 
 [![PyPI Wheel](https://img.shields.io/pypi/wheel/leopy.svg)](https://pypi.org/project/leopy)
 
