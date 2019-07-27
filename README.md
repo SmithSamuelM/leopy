@@ -1,8 +1,8 @@
 # Overview
 
-### Documentation Status
-[![docs](image:: https://readthedocs.org/projects/leopy/badge/?style=flat)](https://readthedocs.org/projects/leopy)
-[docs](image:: https://readthedocs.org/projects/leopy/badge/?style=flat)[](https://readthedocs.org/projects/leopy)
+
+![Documentation Status](image:: https://readthedocs.org/projects/leopy/badge/?style=flat)
+![docs](https://readthedocs.org/projects/leopy)
 
 ### Travis-CI Build Status
 [![travis](image:: https://travis-ci.org/SmithSamuelM/leopy.svg?branch=master)](https://travis-ci.org/SmithSamuelM/leopy)
