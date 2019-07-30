@@ -73,19 +73,17 @@ class EventResource:
         Handles POST requests
         """
         try:  #  get raw data
-            raw_json = req.bounded_stream.read()
-        except Exception:
-            raise falcon.HTTPError(falcon.HTTP_748,
-                                       'Read Error',
-                                       'Could not read the request body.')
-
-        try:  #  convert to json
-            data = json.loads(raw_json, 'utf-8')
+            data = json.load(req.bounded_stream)
         except ValueError:
             raise falcon.HTTPError(falcon.HTTP_753,
                                        'Malformed JSON',
                                        'Could not decode the request body. The '
                                        'JSON was incorrect.')
+        except Exception:
+            raise falcon.HTTPError(falcon.HTTP_748,
+                                       'Read Error',
+                                       'Could not read the request body.')
+
 
         console.terse("POST: \n{}\n".format(data))
         events.push(data)
