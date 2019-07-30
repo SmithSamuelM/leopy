@@ -106,7 +106,7 @@ def eventGenerator():
         event = events.pull()
         console.terse("Streamed Event {}\n\n".format(event))
         yield bytes("{}\n".format(event), "ascii")
-        time.sleep(1.0)
+        time.sleep(0.1)
     yield bytes("{}\r\n".format({}), "ascii")  #  /r/n ends event stream
 
 
@@ -120,7 +120,7 @@ def foreverEventGenerator():
             event = events.pull()
             console.terse("Streamed Event {}\n\n".format(event))
             yield bytes("{}\n".format(event), "ascii")
-            time.sleep(1.0)
+            time.sleep(0.1)
         yield bytes("{}\n".format({}), "ascii")
         time.sleep(1.0)
 
