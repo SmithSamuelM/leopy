@@ -323,6 +323,26 @@ $ cd /.../indy-sdk/cli/target/debug/
 $ ./indy-cli
 ```
 
+### Build the indy postgres library
+
+```bash
+$ cd /.../indy-sdk/experimental/plugins/postgres_storage
+$ cargo build
+```
+
+Libary is now in
+/.../indy-sdk/experimental/plugins/postgres_storage/target/debug/libindystrgpostgres.dylib
+
+Now we put a symlink to this library in /usr/local/lib so the python wrapper 
+can find it. Replace /.../ with the path on your computer.
+
+```bash
+$ ln -s /.../indy-sdk/experimental/plugins/postgres_storage/target/debug/libindystrgpostgres.dylib /usr/local/lib/libindystrgpostgres.dylib
+
+$ ll /usr/local/lib/libindystrgpostgres.dylib
+lrwxrwxr-x  1 ... /usr/local/lib/libindystrgpostgres.dylib@ -> /Data/Code/public/hyperledger/indy/indy-sdk/experimental/plugins/postgres_storage/target/debug/libindystrgpostgres.dylib
+```
+
 
 ### Install Python Wrapper for indy-sdk
 

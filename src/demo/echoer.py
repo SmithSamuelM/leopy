@@ -25,7 +25,7 @@ from ioflo.base import Deck
 
 console = getConsole()
 
-events = Deck()  # module global Deck deque FIFO of events
+Events = Deck()  # module global Deck deque FIFO of events
 
 
 
@@ -45,7 +45,7 @@ class EventResource:
         """
 
         try:
-            event = events.pull()
+            event = Events.pull()
         except IndexError:
             event = {}  #  empty event
 
@@ -86,7 +86,7 @@ class EventResource:
 
 
         console.terse("POST: \n{}\n".format(data))
-        events.push(data)
+        Events.push(data)
 
 
         #rep.status = falcon.HTTP_201
@@ -96,12 +96,12 @@ class EventResource:
         rep.body = json.dumps(data)
 
 # generator
-def eventGenerator():
+def eventGeneratorOneShot():
     """
-    event generator
+    event generator one shot for testing
     """
-    while events:
-        event = events.pull()
+    while Events:
+        event = Events.pull()
         console.terse("Streamed Event {}\n\n".format(event))
         yield bytes("{}\n".format(event), "ascii")
         time.sleep(0.1)
@@ -109,13 +109,14 @@ def eventGenerator():
 
 
 # generator
-def foreverEventGenerator():
+def eventGenerator():
     """
-    event generator
+    event generator continuing
+    does not work with simple server
     """
     while (True):
-        while events:
-            event = events.pull()
+        while Events:
+            event = Events.pull()
             console.terse("Streamed Event {}\n\n".format(event))
             yield bytes("{}\n".format(event), "ascii")
             time.sleep(0.1)
@@ -137,16 +138,55 @@ class EventStreamResource:
 
         rep.status = falcon.HTTP_200  # This is the default status
         rep.content_type = "text/html"
-        rep.stream = eventGenerator()
+        # rep.stream = eventGenerator()
+        rep.stream = eventGeneratorOneShot()
 
+
+def eventSink(req, rep):
+    """
+    Handle all web hook state change event call backs
+    Print to console request
+    Respond with 200
+    """
+    try:  #  get raw data
+        data = req.bounded_stream.read()
+
+    except Exception:
+        raise falcon.HTTPError(falcon.HTTP_748,
+                                   'Read Error',
+                                   'Could not read the request body.')
+
+    console.terse("Sink: {} {}\n".format(req.relative_uri, req.method, data))
+
+    try:  #  convert to json
+        data = json.loads(data)
+    except ValueError:
+        console.terse("Raw:\n{}\n".format(data))
+        raise falcon.HTTPError(falcon.HTTP_753,
+                                   'Malformed JSON',
+                                   'Could not decode the request body. The '
+                                   'JSON was incorrect.')
+
+    pre, sep, aft = req.path.partition("/topic/")
+    topic = " ".join(aft.split("/")[:-1])
+    event = dict(topic = topic)
+    event["data"] = data
+
+    console.terse("JSON:\n{}\n".format(json.dumps(event, indent=2)))
+    Events.push(event)
+
+    rep.status = falcon.HTTP_200  # This is the default status
+    # rep.body = json.dumps(data)
 
 
 
 
 app = falcon.API() # falcon.API instances are callable WSGI apps
 
-eventResource = EventResource()  # Resources are represented by long-lived class instances
-app.add_route('/event', eventResource) # example handles all requests to '/example' URL path
+app.add_sink(eventSink, '/')
+
+# eventResource = EventResource()  # Resources are represented by long-lived class instances
+# app.add_route('/event', eventResource) # example handles all requests to '/example' URL path
 
 eventStreamResource = EventStreamResource()
 app.add_route('/events', eventStreamResource)
@@ -156,5 +196,6 @@ app.add_route('/events', eventStreamResource)
 if __name__ == '__main__':
     from wsgiref import simple_server
 
+    console.terse("Server on http:localhost:8080\n")
     httpd = simple_server.make_server('127.0.0.1', 8080, app)
     httpd.serve_forever()  # navigate web client to http://127.0.0.1:8080/example

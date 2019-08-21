@@ -1,0 +1,14 @@
+# Main Flow
+
+house main
+
+	framer leopy be active first leopy
+		frame leopy
+			print Starting Server
+			bid start server
+
+	framer server be inactive via .main.server
+	    frame server
+			do leopy server open at enter
+			do leopy server service
+			do leopy server close at exit
