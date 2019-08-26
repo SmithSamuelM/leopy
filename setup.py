@@ -79,6 +79,7 @@ setup(
     entry_points={
         'console_scripts': [
             'leopy = leopy.cli:main',
+            'leopyd = leopy.app:main'
         ]
     },
 )
