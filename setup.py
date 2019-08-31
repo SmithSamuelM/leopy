@@ -6,7 +6,7 @@ $ python setup.py register sdist upload
 More secure to use twine to upload
 $ pip3 install twine
 $ python3 setup.py sdist
-$ twine upload dist/leopy-version='0.1.2'.tar.gz
+$ twine upload dist/leopy-0.1.2.tar.gz
 
 """
 
