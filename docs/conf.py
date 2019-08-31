@@ -26,7 +26,7 @@ project = 'leopy'
 year = '2019'
 author = 'Samuel M. Smith'
 copyright = '{0}, {1}'.format(year, author)
-version = release = "version = release = '0.1.5'"
+version = release = "version = release = 'version = release = '0.1.5''"
 
 pygments_style = 'trac'
 templates_path = ['.']
