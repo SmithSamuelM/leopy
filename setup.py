@@ -1,5 +1,17 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
+"""
+$ python setup.py register sdist upload
+
+More secure to use twine to upload
+$ pip3 install twine
+$ python3 setup.py sdist
+$ twine upload dist/toba-0.1.0.tar.gz
+
+"""
+
+
+
 from __future__ import absolute_import
 from __future__ import print_function
 

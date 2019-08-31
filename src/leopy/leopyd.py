@@ -55,7 +55,7 @@ def main():
     floScriptpath = os.path.join(projectDirpath, "leopy/flo/main.flo")
 
     ioflo.app.run.run(name="skedder",
-                      period=0.125,
+                      period=0.0625,
                       real=True,
                       retro=True,
                       filepath=floScriptpath,

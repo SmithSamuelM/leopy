@@ -1,18 +1,18 @@
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-[![Documentation Status](https://readthedocs.org/projects/leopy/badge/?style=flat)](https://readthedocs.org/projects/leopy)  
+[![Documentation Status](https://readthedocs.org/projects/leopy/badge/?style=flat)](https://readthedocs.org/projects/leopy)
 
-[![PyPI Package latest release](https://img.shields.io/pypi/v/leopy.svg)](https://pypi.org/project/leopy)  
+[![PyPI Package latest release](https://img.shields.io/pypi/v/leopy.svg)](https://pypi.org/project/leopy)
 
-[![Commits since latest release](https://img.shields.io/github/commits-since/SmithSamuelM/leopy/v0.1.1.svg)](https://github.com/SmithSamuelM/leopy/compare/v0.1.1...master)  
+[![Commits since latest release](https://img.shields.io/github/commits-since/SmithSamuelM/leopy/v0.1.1.svg)](https://github.com/SmithSamuelM/leopy/compare/v0.1.1...master)
 
-[![PyPI Wheel](https://img.shields.io/pypi/wheel/leopy.svg)](https://pypi.org/project/leopy)  
+[![PyPI Wheel](https://img.shields.io/pypi/wheel/leopy.svg)](https://pypi.org/project/leopy)
 
-[![Supported versions](https://img.shields.io/pypi/pyversions/leopy.svg)](https://pypi.org/project/leopy)  
+[![Supported versions](https://img.shields.io/pypi/pyversions/leopy.svg)](https://pypi.org/project/leopy)
 
-[![Supported implementations](https://img.shields.io/pypi/implementation/leopy.svg)](https://pypi.org/project/leopy)  
+[![Supported implementations](https://img.shields.io/pypi/implementation/leopy.svg)](https://pypi.org/project/leopy)
 
-[![Travis-CI Build Status](https://travis-ci.org/SmithSamuelM/leopy.svg?branch=master)](https://travis-ci.org/SmithSamuelM/leopy)  
+[![Travis-CI Build Status](https://travis-ci.org/SmithSamuelM/leopy.svg?branch=master)](https://travis-ci.org/SmithSamuelM/leopy)
 
 
 
@@ -28,10 +28,38 @@ Change this readme
 
 ## Installation
 
+Clone this repo
+
+```bash
+$ cd /.../leopy/src/
+$ python3 -m leopy.leopyd -v 1
+```
+
+Navigate browser to
+
+http://localhost:8080/events
+
+to see SSE stream of events sent by Agent to Controller
+
+
+
+To use pip install
 
 ```bash
 $ pip3 install leopy
 ```
+
+Then from command line
+
+```bash
+$ leopyd -v 1
+
+```
+
+For help
+
+$ leopyd -h
+
 
 ## Documentation
 
