@@ -40,10 +40,7 @@ setup(
     version='0.1.3',
     license='Apache Software License 2.0',
     description='Hyperledger Aries Cloud Agent Controller Demo',
-    long_description='%s\n%s' % (
-        re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.md')),
-        re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))
-    ),
+    long_description="Hyperledger Aries Cloud Agent Controller Demo",
     author='Samuel M. Smith',
     author_email='smith.samuel.m@gmail.com',
     url='https://github.com/SmithSamuelM/leopy',
