@@ -58,7 +58,22 @@ $ leopyd -v 1
 
 For help
 
+```bash
+
 $ leopyd -h
+
+usage: leopyd [-h] [-V] [-v VERBOSE] [-P PORT]
+
+Runs leopy controller server. Example: app.py --port 8080'
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -V, --version         Prints out version of script runner.
+  -v VERBOSE, --verbose VERBOSE
+                        Verbosity level.
+  -P PORT, --port PORT  Port number the server should listen on. Default is
+                        8080.
+```
 
 
 ## Documentation
