@@ -6,7 +6,7 @@ $ python setup.py register sdist upload
 More secure to use twine to upload
 $ pip3 install twine
 $ python3 setup.py sdist
-$ twine upload dist/toba-0.1.0.tar.gz
+$ twine upload dist/toba-version='0.1.1'.tar.gz
 
 """
 
