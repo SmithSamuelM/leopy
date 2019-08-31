@@ -6,7 +6,7 @@ $ python setup.py register sdist upload
 More secure to use twine to upload
 $ pip3 install twine
 $ python3 setup.py sdist
-$ twine upload dist/toba-version='0.1.1'.tar.gz
+$ twine upload dist/toba-version='0.1.2'.tar.gz
 
 """
 
@@ -37,7 +37,7 @@ def read(*names, **kwargs):
 
 setup(
     name='leopy',
-    version='0.1.1',
+    version='0.1.2',
     license='Apache Software License 2.0',
     description='Hyperledger Aries Cloud Agent Controller Demo',
     long_description='%s\n%s' % (
