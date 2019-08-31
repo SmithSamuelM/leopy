@@ -37,7 +37,7 @@ def read(*names, **kwargs):
 
 setup(
     name='leopy',
-    version='0.1.2',
+    version='0.1.3',
     license='Apache Software License 2.0',
     description='Hyperledger Aries Cloud Agent Controller Demo',
     long_description='%s\n%s' % (
