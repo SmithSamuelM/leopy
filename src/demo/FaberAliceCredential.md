@@ -1297,14 +1297,6 @@ Also the Swagger documentation does not include the "value" field in its example
 So need to file issue.
 
 
-Faber
-
-```POST /presentation_exchange/send_request Creates and sends a presentation request```
-
-The following presentation (proof) request structure works but does not
-not appear to be asking for anything other than the name field in in the credential.
-What I really want to to prove that the name is equal to "Alice Jones".
-
 The requested_predicates field only applies to an attribute field whose value is
 an integer and then the only predicates are <, >, <=, >=, and a combination
 of two predicates for a range proof.
@@ -1312,44 +1304,13 @@ of two predicates for a range proof.
 In the following a restrictions field is used this is not documented in the above
 document but I found an example somewhere that used it. So I took a guess.
 
-### Proof of name field
+Faber
 
-```json
-{
-  "connection_id": "d965bd54-affb-4e11-ba8e-ea54a3214123",
-  "version": "1.0.0",
-  "name": "Proof of Name",
-  "requested_attributes":
-  [
-    {
-      "name": "name",
-      "restrictions":
-      [
-        {
-          "cred_def_id" : "3avoBCqDMFHFaKUHug9s8W:3:CL:13:default"
-        }
-      ]
-    }
-  ],
-  "requested_predicates":
-  [
-
-  ]
-}
-
-```
-
-"presentation_exchange_id": "f01e00a4-3fb9-468c-be05-1db65ac4075d",
+```POST /presentation_exchange/send_request Creates and sends a presentation request```
 
 
-```GET /presentation_exchange/{id}   Fetch a single presentation exchange record```
 
-
-{
-  "state": "verified",
-  "presentation_exchange_id": "f01e00a4-3fb9-468c-be05-1db65ac4075d",
-
-### Proof of Name fail
+### Proof of Name fails
 
 This does not work. Apparently multiple restriction fields in the same restriction
 structure do not work.
@@ -3040,6 +3001,468 @@ Alice
   "thread_id": "f162bd4b-3941-412b-bb56-89f8134045d1"
 }
 ```
+
+## 12, 13, 14 Alternate 3
+
+
+Its not clear what is being proven here. But the presentation proof works.
+The following presentation (proof) request structure works but does not
+not appear to be asking for anything other than the name field in in the credential.
+What I really want to to prove that the name is equal to "Alice Jones".
+
+
+### Proof of name field works
+
+```json
+{
+  "connection_id": "d965bd54-affb-4e11-ba8e-ea54a3214123",
+  "version": "1.0.0",
+  "name": "Proof of Name",
+  "requested_attributes":
+  [
+    {
+      "name": "name",
+      "restrictions":
+      [
+        {
+          "cred_def_id" : "3avoBCqDMFHFaKUHug9s8W:3:CL:13:default"
+        }
+      ]
+    }
+  ],
+  "requested_predicates":
+  [
+
+  ]
+}
+
+```
+
+"presentation_exchange_id": "f01e00a4-3fb9-468c-be05-1db65ac4075d",
+
+
+```GET /presentation_exchange/{id}   Fetch a single presentation exchange record```
+
+
+{
+  "state": "verified",
+  "presentation_exchange_id": "f01e00a4-3fb9-468c-be05-1db65ac4075d",
+
+
+Alice
+
+"presentation_exchange_id": "e9c7c4e1-070a-4e3b-b4f5-be82db55f7ba",
+
+```json
+{
+  "created_at": "2019-09-09 22:05:25.818811Z",
+  "presentation_exchange_id": "e9c7c4e1-070a-4e3b-b4f5-be82db55f7ba",
+  "presentation_request": {
+    "name": "Proof of Name",
+    "version": "1.0.0",
+    "nonce": "58249286838785076326128827533305702503",
+    "requested_attributes": {
+      "f5d03520-f97b-4a95-9dca-562b76023877": {
+        "name": "name",
+        "restrictions": [
+          {
+            "cred_def_id": "3avoBCqDMFHFaKUHug9s8W:3:CL:13:default"
+          }
+        ]
+      }
+    },
+    "requested_predicates": {}
+  },
+  "initiator": "external",
+  "connection_id": "2d67c0a7-3c07-426c-b28f-89fec182f308",
+  "state": "presentation_sent",
+  "updated_at": "2019-09-09 22:05:26.755936Z",
+  "presentation": {
+    "proof": {
+      "proofs": [
+        {
+          "primary_proof": {
+            "eq_proof": {
+              "revealed_attrs": {
+                "name": "72896232743708443677449555551687504476536417389324439453514323796296385992918"
+              },
+              "a_prime": "99060781905225331227822072927635003362326448368289356998407554142440751370857530887278449838006482178160214286348266984833737227151525912777165065750317689541119557498010568788732951626747438074784128847021875652170168286550280170889691405643169135729543398896367567336474200876623305431015552755808431461595136928224146737038548549687948265660619298845573008882568081478448002858530369386063299737715630758390206085214811575640706624415469863427216934229933760420332157518954310133723734007990476659948633272727913238551773540060634417931047177003718985051809323323598195953426445499985151384522137981028095515603791",
+              "e": "88654189601168528956364455358973168287530591240256442995229992413552257093835304910935506690515536903952842172838194186936747969516855040",
+              "v": "1279499704141485159610039518625844340769002122191415852332259310113633175893325193454610356117828346321290624808189104579584109766020846678500573781618949068262792282102605714737553333451130526180805182500487389937446308490217473415781574008000658714673307907039748812959536152358032333400222606363761761549915863858389245210226108667321131774296641827913516009522725655717876467709877929691660350791044345596466755882138130367444783690553678072205534821761836462804338686874081222218076793101770107378118524398488167784079654458633369378969249508377663910376807447841077606969670388943295331709955192020416769704035673739877795341039183831788459268232090563708132784835811739990669828659302490630094594274430920350943264808060304209687879772616165491673396589161327924282197864292893262849247080879928934329864991969860590878561400645122238233638763594193539588468138756708355297864508916939417972541569796725142236815457",
+              "m": {
+                "master_secret": "15611996458482250483793460589382442631633675726543444505177631468843649734483312159681738023255163104923146568104690553341480359649362051023776155370569235056274600856569748614629"
+              },
+              "m2": "2354509474280469824541354786364774273095453635903836697186572326220356892331133420310396334064188175002020112519814816783576589735612773907891326731906773918935843939166765294754"
+            },
+            "ge_proofs": []
+          },
+          "non_revoc_proof": null
+        }
+      ],
+      "aggregated_proof": {
+        "c_hash": "50267586706699410053442122639332229860500416719997459616427279096017612845067",
+        "c_list": [
+          [
+            3,
+            16,
+            182,
+            105,
+            134,
+            103,
+            156,
+            108,
+            227,
+            111,
+            27,
+            100,
+            216,
+            210,
+            184,
+            8,
+            122,
+            80,
+            70,
+            120,
+            168,
+            226,
+            210,
+            133,
+            63,
+            64,
+            82,
+            94,
+            160,
+            16,
+            241,
+            216,
+            105,
+            3,
+            45,
+            219,
+            124,
+            202,
+            128,
+            122,
+            179,
+            215,
+            12,
+            246,
+            184,
+            116,
+            63,
+            29,
+            164,
+            81,
+            235,
+            206,
+            255,
+            220,
+            35,
+            174,
+            175,
+            29,
+            144,
+            225,
+            98,
+            149,
+            21,
+            3,
+            122,
+            108,
+            18,
+            151,
+            150,
+            157,
+            121,
+            23,
+            107,
+            106,
+            223,
+            31,
+            98,
+            104,
+            36,
+            152,
+            178,
+            238,
+            100,
+            183,
+            77,
+            83,
+            207,
+            220,
+            250,
+            45,
+            23,
+            248,
+            35,
+            146,
+            229,
+            21,
+            97,
+            201,
+            150,
+            9,
+            115,
+            28,
+            39,
+            34,
+            138,
+            124,
+            108,
+            225,
+            238,
+            236,
+            206,
+            249,
+            77,
+            238,
+            190,
+            145,
+            63,
+            227,
+            101,
+            253,
+            86,
+            139,
+            211,
+            177,
+            41,
+            108,
+            73,
+            165,
+            132,
+            196,
+            236,
+            173,
+            163,
+            125,
+            155,
+            23,
+            226,
+            159,
+            188,
+            251,
+            109,
+            240,
+            92,
+            173,
+            234,
+            209,
+            147,
+            74,
+            77,
+            69,
+            51,
+            79,
+            90,
+            168,
+            150,
+            27,
+            50,
+            166,
+            35,
+            112,
+            24,
+            51,
+            128,
+            41,
+            129,
+            116,
+            231,
+            212,
+            165,
+            61,
+            10,
+            5,
+            61,
+            228,
+            218,
+            156,
+            185,
+            146,
+            145,
+            103,
+            94,
+            7,
+            45,
+            106,
+            1,
+            138,
+            161,
+            254,
+            145,
+            142,
+            188,
+            184,
+            124,
+            230,
+            27,
+            192,
+            78,
+            161,
+            241,
+            112,
+            22,
+            227,
+            62,
+            117,
+            197,
+            45,
+            54,
+            161,
+            243,
+            177,
+            30,
+            60,
+            175,
+            193,
+            19,
+            21,
+            136,
+            34,
+            201,
+            144,
+            41,
+            204,
+            219,
+            106,
+            21,
+            18,
+            238,
+            6,
+            239,
+            94,
+            65,
+            30,
+            54,
+            31,
+            74,
+            54,
+            166,
+            86,
+            35,
+            56,
+            194,
+            220,
+            93,
+            23,
+            114,
+            231,
+            78,
+            164,
+            144,
+            171,
+            251,
+            102,
+            116,
+            10,
+            166,
+            179,
+            79
+          ]
+        ]
+      }
+    },
+    "requested_proof": {
+      "revealed_attrs": {
+        "f5d03520-f97b-4a95-9dca-562b76023877": {
+          "sub_proof_index": 0,
+          "raw": "Alice Jones",
+          "encoded": "72896232743708443677449555551687504476536417389324439453514323796296385992918"
+        }
+      },
+      "self_attested_attrs": {},
+      "unrevealed_attrs": {},
+      "predicates": {}
+    },
+    "identifiers": [
+      {
+        "schema_id": "3avoBCqDMFHFaKUHug9s8W:2:fabername:0.1.0",
+        "cred_def_id": "3avoBCqDMFHFaKUHug9s8W:3:CL:13:default",
+        "rev_reg_id": null,
+        "timestamp": null
+      }
+    ]
+  },
+  "thread_id": "a1449765-15e5-4342-a9cd-d9b4bba41989"
+}
+```
+
+
+###
+In all 4 of the working cases I looked at the presentation exchange records
+and found some fields that might explain what was proven but they are not
+documented so its merely a guess.
+
+I think the revealed attributes shows what is proven but not sure
+
+A)
+
+"requested_proof": {
+      "revealed_attrs": {
+        "a88aff02-454b-4256-b3de-09edde2620fb": {
+          "sub_proof_index": 0,
+          "raw": "Alice Jones",
+          "encoded": "72896232743708443677449555551687504476536417389324439453514323796296385992918"
+        }
+      },
+      "self_attested_attrs": {},
+      "unrevealed_attrs": {},
+      "predicates": {}
+    },
+B)
+
+"requested_proof": {
+      "revealed_attrs": {
+        "55cce48e-c037-4e11-8f97-8988056d57c1": {
+          "sub_proof_index": 0,
+          "raw": "Alice Jones",
+          "encoded": "72896232743708443677449555551687504476536417389324439453514323796296385992918"
+        }
+      },
+      "self_attested_attrs": {},
+      "unrevealed_attrs": {},
+      "predicates": {}
+    },
+C)
+
+ "requested_proof": {
+      "revealed_attrs": {
+        "c4e9d3e5-0143-4e1d-b7d6-ba49fb4b29a4": {
+          "sub_proof_index": 0,
+          "raw": "Alice Jones",
+          "encoded": "72896232743708443677449555551687504476536417389324439453514323796296385992918"
+        }
+      },
+      "self_attested_attrs": {},
+      "unrevealed_attrs": {},
+      "predicates": {}
+    },
+D)
+
+"requested_proof": {
+          "revealed_attrs": {
+            "f5d03520-f97b-4a95-9dca-562b76023877": {
+              "sub_proof_index": 0,
+              "raw": "Alice Jones",
+              "encoded": "72896232743708443677449555551687504476536417389324439453514323796296385992918"
+            }
+          },
+          "self_attested_attrs": {},
+          "unrevealed_attrs": {},
+          "predicates": {}
+        },
+Because all four are the same it makes me wary that I am not interpreting it
+correctly. I do not trust that I understand what is being proven.
+As it seems that if they are proving the same thing then there are 4 different
+ways to request the proof.
+
+I filed the following issue
+
+https://github.com/hyperledger/aries-cloudagent-python/issues/175
+
+
 
 ### Notes
 
