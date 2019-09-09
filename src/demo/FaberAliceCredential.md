@@ -1301,7 +1301,18 @@ Faber
 
 ```POST /presentation_exchange/send_request Creates and sends a presentation request```
 
-Work but not asking for anything other than has name field in credential
+The following presentation (proof) request structure works but does not
+not appear to be asking for anything other than the name field in in the credential.
+What I really want to to prove that the name is equal to "Alice Jones".
+
+The requested_predicates field only applies to an attribute field whose value is
+an integer and then the only predicates are <, >, <=, >=, and a combination
+of two predicates for a range proof.
+
+In the following a restrictions field is used this is not documented in the above
+document but I found an example somewhere that used it. So I took a guess.
+
+### Proof of name field
 
 ```json
 {
@@ -1338,8 +1349,11 @@ Work but not asking for anything other than has name field in credential
   "state": "verified",
   "presentation_exchange_id": "f01e00a4-3fb9-468c-be05-1db65ac4075d",
 
+### Proof of Name fail
 
-Not Work
+This does not work. Apparently multiple restriction fields in the same restriction
+structure do not work.
+
 
 ```json
 {
@@ -1377,43 +1391,12 @@ did not produce exactly one credential result.
 
 
 
-Works
 
-```json
-{
-  "connection_id": "d965bd54-affb-4e11-ba8e-ea54a3214123",
-  "version": "1.0.0",
-  "name": "Proof of Name",
-  "requested_attributes":
-  [
-    {
-      "name": "name",
-      "value": "Alice Jones",
-      "restrictions":
-      [
-        {
-          "cred_def_id" : "3avoBCqDMFHFaKUHug9s8W:3:CL:13:default"
-        }
-      ]
-    }
-  ],
-  "requested_predicates":
-  [
+### Proof of Name with two separate restrictions works
 
-  ]
-}
-
-```
-
-"presentation_exchange_id": "e19e58a5-2aaf-41ba-a2d0-5a7d4e90ad28"
-
-{
-  "state": "verified",
-  "presentation_exchange_id": "e19e58a5-2aaf-41ba-a2d0-5a7d4e90ad28",
-
-
-
-Works
+This seems to be clear that it is asking for proof of name with two restrictions
+on the proof. One on the credential def and one on the value of the name field.
+Most confident that this one is actually proving name = "Alice Jones"
 
 ```json
 {
@@ -2236,8 +2219,11 @@ Response:
 
 
 
-## 12, 13, 14 Alternate
+## 12, 13, 14 Alternate 1
 
+The document https://github.com/hyperledger/aries-rfcs/tree/master/features/0037-present-proof
+doesn't show a restrictions field but just lists the attributes. So I tried that
+format. It worked but I am not sure what was proven.
 
 Change format of request. To simpler format not sure why it works
 
@@ -2670,8 +2656,390 @@ Response:
 
 ```
 
+## 12, 13, 14 Alternate 2
+
+In this case I used a combination of just listing the attributes and using
+the restrictions field
+
+Its not clear what is being proven here. But the presentation proof works.
+
+```json
+{
+  "connection_id": "d965bd54-affb-4e11-ba8e-ea54a3214123",
+  "version": "1.0.0",
+  "name": "Proof of Name",
+  "requested_attributes":
+  [
+    {
+      "name": "name",
+      "value": "Alice Jones",
+      "restrictions":
+      [
+        {
+          "cred_def_id" : "3avoBCqDMFHFaKUHug9s8W:3:CL:13:default"
+        }
+      ]
+    }
+  ],
+  "requested_predicates":
+  [
+
+  ]
+}
+
+```
+
+```"presentation_exchange_id": "e19e58a5-2aaf-41ba-a2d0-5a7d4e90ad28"```
 
 
+```json
+{
+  "state": "verified",
+  "presentation_exchange_id": "e19e58a5-2aaf-41ba-a2d0-5a7d4e90ad28",
+
+```
+
+
+Alice
+
+```
+"presentation_exchange_id": "aa56f360-30ea-4c50-9182-c9db460f92dc"
+```
+
+```json
+{
+  "created_at": "2019-09-09 22:09:44.880059Z",
+  "presentation_exchange_id": "aa56f360-30ea-4c50-9182-c9db460f92dc",
+  "presentation_request": {
+    "name": "Proof of Name",
+    "version": "1.0.0",
+    "nonce": "172424749292191585703722826428301371269",
+    "requested_attributes": {
+      "c4e9d3e5-0143-4e1d-b7d6-ba49fb4b29a4": {
+        "name": "name",
+        "value": "Alice Jones",
+        "restrictions": [
+          {
+            "cred_def_id": "3avoBCqDMFHFaKUHug9s8W:3:CL:13:default"
+          }
+        ]
+      }
+    },
+    "requested_predicates": {}
+  },
+  "initiator": "external",
+  "connection_id": "2d67c0a7-3c07-426c-b28f-89fec182f308",
+  "state": "presentation_sent",
+  "updated_at": "2019-09-09 22:09:44.980734Z",
+  "presentation": {
+    "proof": {
+      "proofs": [
+        {
+          "primary_proof": {
+            "eq_proof": {
+              "revealed_attrs": {
+                "name": "72896232743708443677449555551687504476536417389324439453514323796296385992918"
+              },
+              "a_prime": "122373928186695116998217815378726459828399737352763472075335180154600301344203173709590810485976134100417922288247053197147125651245671616338069610807597302753858595721315467724054237362335012568857690429346800605022424438229412857068392141547826780634303758432456747351411629880574993846584468370346174892531009481200633035947185777823076069912829821997788635348149834796835413145738247518229427804635780021675133708747153301974725919108153355014032049840865179245481008085409660789595165747823219920802715756755861829240412143545599768761899001106829459334886172599236002306486735106113316658887350092140507927471",
+              "e": "85430961760037859404155513730009252198876037194087849952115998703779369405887736956015671899799775707850250867848832314232683795154251981",
+              "v": "1145467431492561748310700128269773951202217061946541241949639679550688983883439188513304722826160654187503451987288761740797375280081173618735196679845527795442612312196926119306405354456043545385151662112619094057522095674499919863525701663447365622721910031858812183784793857670861722013822369490818333038083822326871783937296217473211231489449882318819260843972973184766032406818194004468611717344747719590505468311313230480285051966193877770020041812863909925189745945465592973063378617712491895865448016728238459284206575116699089055809359290368652599230095443850813947421603115952283605877464097177206177936245973754987227134882039829295610272548588821567828286500001475906545262756783552291753864317405090680143332883948081511824331084771023159232529224265411347106948631858193103979027992167282365030176100596697374316746220830518788554180822004132649759308345927517948547826024107414755193390602458996429723542121",
+              "m": {
+                "master_secret": "12642829848651204191412699066973231181547956958148810717348566557051472602592560541262160982367766969820102876470115151884485483615873846728046981905651307793379573235279993699910"
+              },
+              "m2": "11334238198503198910734756071101835270886052834492186335974738310812137272834695140407021524464306217717477423610221866560248066861597122561138290084967928202378620519008385119166"
+            },
+            "ge_proofs": []
+          },
+          "non_revoc_proof": null
+        }
+      ],
+      "aggregated_proof": {
+        "c_hash": "93445681669363257920720055765112035409968867500925872013753654293266465226294",
+        "c_list": [
+          [
+            248,
+            41,
+            211,
+            225,
+            9,
+            137,
+            177,
+            191,
+            206,
+            160,
+            38,
+            14,
+            43,
+            157,
+            24,
+            115,
+            139,
+            231,
+            106,
+            51,
+            225,
+            94,
+            160,
+            216,
+            228,
+            101,
+            172,
+            45,
+            72,
+            144,
+            245,
+            91,
+            156,
+            255,
+            212,
+            208,
+            112,
+            241,
+            18,
+            78,
+            152,
+            215,
+            241,
+            95,
+            66,
+            68,
+            145,
+            153,
+            23,
+            78,
+            167,
+            87,
+            178,
+            80,
+            83,
+            6,
+            53,
+            41,
+            65,
+            233,
+            87,
+            84,
+            193,
+            147,
+            232,
+            236,
+            193,
+            199,
+            44,
+            183,
+            106,
+            250,
+            33,
+            85,
+            63,
+            34,
+            79,
+            134,
+            82,
+            87,
+            14,
+            148,
+            187,
+            206,
+            27,
+            184,
+            154,
+            86,
+            22,
+            84,
+            172,
+            218,
+            109,
+            35,
+            73,
+            52,
+            1,
+            227,
+            182,
+            134,
+            123,
+            196,
+            38,
+            50,
+            117,
+            98,
+            215,
+            28,
+            251,
+            115,
+            72,
+            230,
+            123,
+            76,
+            148,
+            55,
+            63,
+            242,
+            19,
+            35,
+            26,
+            29,
+            65,
+            62,
+            12,
+            110,
+            221,
+            193,
+            141,
+            209,
+            36,
+            208,
+            72,
+            223,
+            216,
+            197,
+            43,
+            250,
+            138,
+            114,
+            123,
+            184,
+            34,
+            54,
+            229,
+            106,
+            238,
+            135,
+            201,
+            225,
+            185,
+            155,
+            26,
+            120,
+            204,
+            212,
+            218,
+            101,
+            66,
+            176,
+            164,
+            4,
+            119,
+            92,
+            95,
+            16,
+            95,
+            93,
+            50,
+            20,
+            192,
+            100,
+            87,
+            200,
+            7,
+            59,
+            95,
+            160,
+            20,
+            57,
+            109,
+            154,
+            157,
+            131,
+            249,
+            156,
+            195,
+            155,
+            81,
+            144,
+            184,
+            155,
+            153,
+            54,
+            25,
+            166,
+            141,
+            43,
+            254,
+            144,
+            68,
+            116,
+            253,
+            234,
+            54,
+            126,
+            28,
+            98,
+            224,
+            110,
+            92,
+            7,
+            238,
+            32,
+            250,
+            250,
+            193,
+            32,
+            87,
+            5,
+            245,
+            246,
+            214,
+            117,
+            97,
+            56,
+            35,
+            117,
+            160,
+            115,
+            74,
+            49,
+            53,
+            139,
+            149,
+            201,
+            57,
+            126,
+            57,
+            186,
+            248,
+            159,
+            218,
+            230,
+            25,
+            16,
+            88,
+            171,
+            121,
+            144,
+            75,
+            64,
+            93,
+            147,
+            175
+          ]
+        ]
+      }
+    },
+    "requested_proof": {
+      "revealed_attrs": {
+        "c4e9d3e5-0143-4e1d-b7d6-ba49fb4b29a4": {
+          "sub_proof_index": 0,
+          "raw": "Alice Jones",
+          "encoded": "72896232743708443677449555551687504476536417389324439453514323796296385992918"
+        }
+      },
+      "self_attested_attrs": {},
+      "unrevealed_attrs": {},
+      "predicates": {}
+    },
+    "identifiers": [
+      {
+        "schema_id": "3avoBCqDMFHFaKUHug9s8W:2:fabername:0.1.0",
+        "cred_def_id": "3avoBCqDMFHFaKUHug9s8W:3:CL:13:default",
+        "rev_reg_id": null,
+        "timestamp": null
+      }
+    ]
+  },
+  "thread_id": "f162bd4b-3941-412b-bb56-89f8134045d1"
+}
+```
 
 ### Notes
 
