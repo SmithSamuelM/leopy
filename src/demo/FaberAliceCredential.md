@@ -3399,6 +3399,7 @@ I think the revealed attributes shows what is proven but not sure
 
 A)
 
+```json
 "requested_proof": {
       "revealed_attrs": {
         "a88aff02-454b-4256-b3de-09edde2620fb": {
@@ -3410,9 +3411,11 @@ A)
       "self_attested_attrs": {},
       "unrevealed_attrs": {},
       "predicates": {}
-    },
-B)
+    }
+```
 
+B)
+```json
 "requested_proof": {
       "revealed_attrs": {
         "55cce48e-c037-4e11-8f97-8988056d57c1": {
@@ -3424,9 +3427,11 @@ B)
       "self_attested_attrs": {},
       "unrevealed_attrs": {},
       "predicates": {}
-    },
-C)
+    }
+```
 
+C)
+```json
  "requested_proof": {
       "revealed_attrs": {
         "c4e9d3e5-0143-4e1d-b7d6-ba49fb4b29a4": {
@@ -3438,9 +3443,11 @@ C)
       "self_attested_attrs": {},
       "unrevealed_attrs": {},
       "predicates": {}
-    },
-D)
+    }
+```
 
+D)
+```json
 "requested_proof": {
           "revealed_attrs": {
             "f5d03520-f97b-4a95-9dca-562b76023877": {
@@ -3452,7 +3459,10 @@ D)
           "self_attested_attrs": {},
           "unrevealed_attrs": {},
           "predicates": {}
-        },
+        }
+```
+
+
 Because all four are the same it makes me wary that I am not interpreting it
 correctly. I do not trust that I understand what is being proven.
 As it seems that if they are proving the same thing then there are 4 different
