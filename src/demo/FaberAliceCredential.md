@@ -1119,6 +1119,19 @@ This is not the credential_exchange_id nor the cred_def_id.
 The get credentials call should return the credential_id not just the cred_def_id
 and also the credential_exchange_id
 
+This is addressed in this issue.
+https://github.com/hyperledger/aries-cloudagent-python/issues/163#issuecomment-530036464
+
+The answer is that the GET /credentials does provide the credential_id but the field
+is named referent.  See above.
+
+So using the referent field for the credential_id
+
+GET /credential/{id}  should work
+
+"referent": "64ea2e85-c70f-45ad-b609-68bc1ac89816",
+
+
 
 Alice
 
